@@ -58,6 +58,7 @@
         selectByExampleQueryId:Select单个对象语句中加入where条件查询，默认为true开启
         -->
         <table tableName="roles" />
+        <table tableName="emps" />
         <table tableName="permissions" />
     </context>
 </generatorConfiguration>
