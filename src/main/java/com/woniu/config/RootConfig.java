@@ -57,15 +57,16 @@ public class RootConfig {
 	@Bean
 	public ShiroFilterFactoryBean shiroFilter() {
 		ShiroFilterFactoryBean sffb = new ShiroFilterFactoryBean();
-		sffb.setLoginUrl("/login.jsp");
+		sffb.setLoginUrl("/jsp/index.jsp");
 		sffb.setUnauthorizedUrl("/exceptionResolver/unauthorized.jsp");
 		sffb.setSecurityManager(securityManager());
 		
 		
 		Map<String, String> map = new HashMap<>();
+		map.put("/images/*", "anon");
 		map.put("/logout", "logout");
-		map.put("/login.jsp", "anon");
-		map.put("/users/login", "anon");
+		map.put("/index.jsp", "anon");
+		map.put("/emps/login", "anon");
 		map.put("/**", "authc");
 		
 		sffb.setFilterChainDefinitionMap(map);
