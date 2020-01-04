@@ -172,6 +172,12 @@ public class SalaryServiceImpl implements SalaryService {
 
 	@Override
 	public Sal findSal(Integer empId,Integer year,Integer month) {
+		if(year==null||year==0) {
+			year=2019;
+		};
+		if(month==null||month==0) {
+			month=1;
+		};
 		Integer salId = getSalId(empId,year,month);
 		return mapper.selectByPrimaryKey(salId);
 	}

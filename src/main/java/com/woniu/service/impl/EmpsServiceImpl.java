@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.woniu.dao.EmpsMapper;
 import com.woniu.domain.Emps;
+import com.woniu.domain.EmpsExample;
 import com.woniu.domain.Roles;
 import com.woniu.service.EmpsService;
 
@@ -71,6 +72,16 @@ public class EmpsServiceImpl implements EmpsService {
 			map.put("rid", rid);
 			mapper.grantRolesByEid(map);
 		}
+	}
+
+	@Override
+	public Emps findEmp(String oaAccount) {
+		// TODO Auto-generated method stub
+		EmpsExample example=new EmpsExample();
+		example.or().andOaAccountEqualTo(oaAccount);
+		List<Emps> list = mapper.selectByExample(example);
+		Emps emp=list.get(0);
+		return emp;
 	}
 
 }

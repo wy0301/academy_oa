@@ -15,4 +15,5 @@ public interface EmpsService {
 	List<Roles> findRolesByEmpID(Integer eid);
 	void removeRolesByEid(Integer eid);
 	void grantRolesByEid(Integer eid,Integer[] roles);
+	Emps findEmp(String oaAccount);
 }

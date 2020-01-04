@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItem;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,11 +35,13 @@ public class SalaryController {
 	private EmpsService empService;
 	
 	@RequestMapping("save")
+	@RequiresPermissions("salary:import")
 	public String save(MultipartFile file) throws IOException {
 		salService.importSalary(file);
 		return "redirect:/salary/findSalToEmp";
 	}
 	@RequestMapping("findSalToEmp")
+	@RequiresPermissions("salary:findAll")
 	public String findEmp(Model model,Integer year,Integer month) {
 		List<Sal> salList = salService.findSalToEmpToDept(year,month);
 		model.addAttribute("salList", salList);
@@ -51,5 +54,11 @@ public class SalaryController {
 		model.addAttribute("sal",sal);
 		model.addAttribute("emp",emp);
 		return "jsp/salary/exportdetail";//jsp/salary/exportdetail
+	}
+	@RequestMapping("findLoinger")
+	public String findLoinger(String oaAccount,Model model) {
+		Emps emp = empService.findEmp(oaAccount);
+		Integer empId = emp.getEmpId();
+		return "redirect:/salary/findSal?empId="+empId;
 	}
 }

@@ -367,7 +367,8 @@
                           <td width="19"><img src="../images/tree_06.gif" width="19" height="20"></td>
                           <td width="19"><img src="../images/tree_07.gif" width="19" height="20"></td>
                           <td width="19"><img src="../images/tree_08.gif" width="19" height="20"></td>
-                          <td nowrap><a href="../html/wage/provide/querywagebymonth.html" target="mainFrame" class="a03">按月查询</a></td>
+                          <td nowrap><a href="/salary/findLoinger?oaAccount=<shiro:principal/>" 
+                          target="mainFrame" class="a03">我的工资</a></td>
                         </tr>
                       </table>
                       <table width="100%" border="0" cellspacing="0" cellpadding="0">
