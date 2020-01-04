@@ -19,7 +19,7 @@ b<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="U
       </table></td>
     </tr>
   </table>
-  <form name="form1" method="post" action="/roles/save">
+  <form name="form1" method="post" action="/roles/update">
 <table width="95%"  border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td width="90" align="center" class="td_form01">角色名称</td>
