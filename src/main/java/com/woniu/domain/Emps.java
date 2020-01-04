@@ -17,6 +17,8 @@ public class Emps implements Serializable {
     private Date hiredate;
 
     private Integer deptId;
+    
+    private Dept dept;
 
     private String status;
 
@@ -115,26 +117,19 @@ public class Emps implements Serializable {
     public void setSalt(String salt) {
         this.salt = salt == null ? null : salt.trim();
     }
+    
+    public Dept getDept() {
+		return dept;
+	}
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", empId=").append(empId);
-        sb.append(", ename=").append(ename);
-        sb.append(", sex=").append(sex);
-        sb.append(", birthday=").append(birthday);
-        sb.append(", phone=").append(phone);
-        sb.append(", hiredate=").append(hiredate);
-        sb.append(", deptId=").append(deptId);
-        sb.append(", status=").append(status);
-        sb.append(", oaAccount=").append(oaAccount);
-        sb.append(", oaPassword=").append(oaPassword);
-        sb.append(", salt=").append(salt);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
-    }
+	public void setDept(Dept dept) {
+		this.dept = dept;
+	}
+
+	@Override
+	public String toString() {
+		return "Emps [empId=" + empId + ", ename=" + ename + ", sex=" + sex + ", birthday=" + birthday + ", phone="
+				+ phone + ", hiredate=" + hiredate + ", deptId=" + deptId + ", dept=" + dept + ", status=" + status
+				+ ", oaAccount=" + oaAccount + ", oaPassword=" + oaPassword + ", salt=" + salt + "]";
+	}
 }
