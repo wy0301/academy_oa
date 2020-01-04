@@ -57,8 +57,6 @@
         enableSelectByExample:Select多条语句中加入where条件查询，默认为true开启
         selectByExampleQueryId:Select单个对象语句中加入where条件查询，默认为true开启
         -->
-        <table tableName="emps" />
-        <table tableName="roles" />
-        <table tableName="permissions" />
+        <table tableName="extra_income" />
     </context>
 </generatorConfiguration>

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniu.dao.ExtraIncomeMapper">
+  <resultMap id="BaseResultMap" type="com.woniu.domain.ExtraIncome">
+    <id column="EXTRA_INCOME_ID" jdbcType="INTEGER" property="extraIncomeId" />
+    <result column="EMP_ID" jdbcType="INTEGER" property="empId" />
+    <result column="YEAR" jdbcType="INTEGER" property="year" />
+    <result column="MONTH" jdbcType="INTEGER" property="month" />
+    <result column="EXTRA_INCOME_DETAIL" jdbcType="VARCHAR" property="extraIncomeDetail" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="TOTAL" jdbcType="DECIMAL" property="total" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    EXTRA_INCOME_ID, EMP_ID, YEAR, MONTH, EXTRA_INCOME_DETAIL, REMARK, TOTAL
+  </sql>
+  <select id="selectByExample" parameterType="com.woniu.domain.ExtraIncomeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from extra_income
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from extra_income
+    where EXTRA_INCOME_ID = #{extraIncomeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from extra_income
+    where EXTRA_INCOME_ID = #{extraIncomeId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.woniu.domain.ExtraIncomeExample">
+    delete from extra_income
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.woniu.domain.ExtraIncome">
+    insert into extra_income (EXTRA_INCOME_ID, EMP_ID, YEAR, 
+      MONTH, EXTRA_INCOME_DETAIL, REMARK, 
+      TOTAL)
+    values (#{extraIncomeId,jdbcType=INTEGER}, #{empId,jdbcType=INTEGER}, #{year,jdbcType=INTEGER}, 
+      #{month,jdbcType=INTEGER}, #{extraIncomeDetail,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{total,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.woniu.domain.ExtraIncome">
+    insert into extra_income
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="extraIncomeId != null">
+        EXTRA_INCOME_ID,
+      </if>
+      <if test="empId != null">
+        EMP_ID,
+      </if>
+      <if test="year != null">
+        YEAR,
+      </if>
+      <if test="month != null">
+        MONTH,
+      </if>
+      <if test="extraIncomeDetail != null">
+        EXTRA_INCOME_DETAIL,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="total != null">
+        TOTAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="extraIncomeId != null">
+        #{extraIncomeId,jdbcType=INTEGER},
+      </if>
+      <if test="empId != null">
+        #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null">
+        #{month,jdbcType=INTEGER},
+      </if>
+      <if test="extraIncomeDetail != null">
+        #{extraIncomeDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.woniu.domain.ExtraIncomeExample" resultType="java.lang.Long">
+    select count(*) from extra_income
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update extra_income
+    <set>
+      <if test="record.extraIncomeId != null">
+        EXTRA_INCOME_ID = #{record.extraIncomeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.empId != null">
+        EMP_ID = #{record.empId,jdbcType=INTEGER},
+      </if>
+      <if test="record.year != null">
+        YEAR = #{record.year,jdbcType=INTEGER},
+      </if>
+      <if test="record.month != null">
+        MONTH = #{record.month,jdbcType=INTEGER},
+      </if>
+      <if test="record.extraIncomeDetail != null">
+        EXTRA_INCOME_DETAIL = #{record.extraIncomeDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.total != null">
+        TOTAL = #{record.total,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update extra_income
+    set EXTRA_INCOME_ID = #{record.extraIncomeId,jdbcType=INTEGER},
+      EMP_ID = #{record.empId,jdbcType=INTEGER},
+      YEAR = #{record.year,jdbcType=INTEGER},
+      MONTH = #{record.month,jdbcType=INTEGER},
+      EXTRA_INCOME_DETAIL = #{record.extraIncomeDetail,jdbcType=VARCHAR},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      TOTAL = #{record.total,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.domain.ExtraIncome">
+    update extra_income
+    <set>
+      <if test="empId != null">
+        EMP_ID = #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="year != null">
+        YEAR = #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null">
+        MONTH = #{month,jdbcType=INTEGER},
+      </if>
+      <if test="extraIncomeDetail != null">
+        EXTRA_INCOME_DETAIL = #{extraIncomeDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        TOTAL = #{total,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where EXTRA_INCOME_ID = #{extraIncomeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.woniu.domain.ExtraIncome">
+    update extra_income
+    set EMP_ID = #{empId,jdbcType=INTEGER},
+      YEAR = #{year,jdbcType=INTEGER},
+      MONTH = #{month,jdbcType=INTEGER},
+      EXTRA_INCOME_DETAIL = #{extraIncomeDetail,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      TOTAL = #{total,jdbcType=DECIMAL}
+    where EXTRA_INCOME_ID = #{extraIncomeId,jdbcType=INTEGER}
+  </update>
+</mapper>
