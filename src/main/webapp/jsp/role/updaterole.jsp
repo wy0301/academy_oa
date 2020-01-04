@@ -1,4 +1,4 @@
-b<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/commons/head.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -19,7 +19,7 @@ b<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="U
       </table></td>
     </tr>
   </table>
-  <form name="form1" method="post" action="/roles/save">
+  <form name="form1" method="post" action="/roles/update">
 <table width="95%"  border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td width="90" align="center" class="td_form01">角色名称</td>
