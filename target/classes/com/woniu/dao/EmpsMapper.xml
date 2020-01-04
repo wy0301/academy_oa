@@ -5,9 +5,9 @@
     <id column="EMP_ID" jdbcType="INTEGER" property="empId" />
     <result column="ENAME" jdbcType="VARCHAR" property="ename" />
     <result column="SEX" jdbcType="VARCHAR" property="sex" />
-    <result column="BIRTHDAY" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="BIRTHDAY" jdbcType="DATE" property="birthday" />
     <result column="PHONE" jdbcType="VARCHAR" property="phone" />
-    <result column="HIREDATE" jdbcType="TIMESTAMP" property="hiredate" />
+    <result column="HIREDATE" jdbcType="DATE" property="hiredate" />
     <result column="DEPT_ID" jdbcType="INTEGER" property="deptId" />
     <result column="STATUS" jdbcType="VARCHAR" property="status" />
     <result column="OA_ACCOUNT" jdbcType="VARCHAR" property="oaAccount" />
@@ -112,7 +112,7 @@
       DEPT_ID, STATUS, OA_ACCOUNT, 
       OA_PASSWORD, SALT)
     values (#{empId,jdbcType=INTEGER}, #{ename,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
-      #{birthday,jdbcType=TIMESTAMP}, #{phone,jdbcType=VARCHAR}, #{hiredate,jdbcType=TIMESTAMP}, 
+      #{birthday,jdbcType=DATE}, #{phone,jdbcType=VARCHAR}, #{hiredate,jdbcType=DATE}, 
       #{deptId,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{oaAccount,jdbcType=VARCHAR}, 
       #{oaPassword,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR})
   </insert>
@@ -164,13 +164,13 @@
         #{sex,jdbcType=VARCHAR},
       </if>
       <if test="birthday != null">
-        #{birthday,jdbcType=TIMESTAMP},
+        #{birthday,jdbcType=DATE},
       </if>
       <if test="phone != null">
         #{phone,jdbcType=VARCHAR},
       </if>
       <if test="hiredate != null">
-        #{hiredate,jdbcType=TIMESTAMP},
+        #{hiredate,jdbcType=DATE},
       </if>
       <if test="deptId != null">
         #{deptId,jdbcType=INTEGER},
@@ -208,13 +208,13 @@
         SEX = #{record.sex,jdbcType=VARCHAR},
       </if>
       <if test="record.birthday != null">
-        BIRTHDAY = #{record.birthday,jdbcType=TIMESTAMP},
+        BIRTHDAY = #{record.birthday,jdbcType=DATE},
       </if>
       <if test="record.phone != null">
         PHONE = #{record.phone,jdbcType=VARCHAR},
       </if>
       <if test="record.hiredate != null">
-        HIREDATE = #{record.hiredate,jdbcType=TIMESTAMP},
+        HIREDATE = #{record.hiredate,jdbcType=DATE},
       </if>
       <if test="record.deptId != null">
         DEPT_ID = #{record.deptId,jdbcType=INTEGER},
@@ -241,9 +241,9 @@
     set EMP_ID = #{record.empId,jdbcType=INTEGER},
       ENAME = #{record.ename,jdbcType=VARCHAR},
       SEX = #{record.sex,jdbcType=VARCHAR},
-      BIRTHDAY = #{record.birthday,jdbcType=TIMESTAMP},
+      BIRTHDAY = #{record.birthday,jdbcType=DATE},
       PHONE = #{record.phone,jdbcType=VARCHAR},
-      HIREDATE = #{record.hiredate,jdbcType=TIMESTAMP},
+      HIREDATE = #{record.hiredate,jdbcType=DATE},
       DEPT_ID = #{record.deptId,jdbcType=INTEGER},
       STATUS = #{record.status,jdbcType=VARCHAR},
       OA_ACCOUNT = #{record.oaAccount,jdbcType=VARCHAR},
@@ -263,13 +263,13 @@
         SEX = #{sex,jdbcType=VARCHAR},
       </if>
       <if test="birthday != null">
-        BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+        BIRTHDAY = #{birthday,jdbcType=DATE},
       </if>
       <if test="phone != null">
         PHONE = #{phone,jdbcType=VARCHAR},
       </if>
       <if test="hiredate != null">
-        HIREDATE = #{hiredate,jdbcType=TIMESTAMP},
+        HIREDATE = #{hiredate,jdbcType=DATE},
       </if>
       <if test="deptId != null">
         DEPT_ID = #{deptId,jdbcType=INTEGER},
@@ -293,9 +293,9 @@
     update emps
     set ENAME = #{ename,jdbcType=VARCHAR},
       SEX = #{sex,jdbcType=VARCHAR},
-      BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      BIRTHDAY = #{birthday,jdbcType=DATE},
       PHONE = #{phone,jdbcType=VARCHAR},
-      HIREDATE = #{hiredate,jdbcType=TIMESTAMP},
+      HIREDATE = #{hiredate,jdbcType=DATE},
       DEPT_ID = #{deptId,jdbcType=INTEGER},
       STATUS = #{status,jdbcType=VARCHAR},
       OA_ACCOUNT = #{oaAccount,jdbcType=VARCHAR},

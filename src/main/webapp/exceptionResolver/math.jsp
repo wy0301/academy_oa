@@ -8,6 +8,6 @@
 </head>
 <body>
 	算数错误！
-	点击<a href="/home.jsp" target="_top">这里</a>返回
+	点击<a href="javascript:;" onclick="history.back()">这里</a>返回
 </body>
 </html>
