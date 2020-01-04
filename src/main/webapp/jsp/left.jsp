@@ -349,7 +349,7 @@
 							<td width="19"><img src="../images/tree_06.gif" width="19" height="20"></td>
 							<td width="19"><img src="../images/tree_07.gif" width="19" height="20"></td>
 							<td width="19"><img src="../images/tree_14.gif" width="19" height="20"></td>
-							<td nowrap><a href="../html/wage/provide/export1.html" target="mainFrame" class="a03">导入工资外收入</a></td>
+							<td nowrap><a href="/jsp/sal/importEI.jsp" target="mainFrame" class="a03">导入工资外收入</a></td>
 						  </tr>
 						</table>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -383,7 +383,7 @@
                           <td width="19"><img src="../images/tree_06.gif" width="19" height="20"></td>
                           <td width="19"><img src="../images/tree_23.gif" width="19" height="20"></td>
                           <td width="19"><img src="../images/tree_08.gif" width="19" height="20"></td>
-                          <td nowrap><a href="../html/wage/provide/queryotherwageinfo.html" target="mainFrame" class="a03">工资外信息查询</a></td>
+                          <td nowrap><a href="/extraIncome/findUI" target="mainFrame" class="a03">工资外信息查询</a></td>
                         </tr>
                       </table>
                       </div>

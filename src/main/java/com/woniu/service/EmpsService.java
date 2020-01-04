@@ -11,6 +11,7 @@ public interface EmpsService {
 	void delete(Integer eid);
 	void update(Emps e);
 	Emps find(Integer eid);
+	Emps findByOaCount(String count);
 	List<Emps> find();
 	List<Roles> findRolesByEmpID(Integer eid);
 	void removeRolesByEid(Integer eid);
