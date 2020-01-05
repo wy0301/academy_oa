@@ -81,5 +81,13 @@ public class EmpsServiceImpl implements EmpsService {
 		ee.or().andOaAccountEqualTo(count);
 		return mapper.selectByExample(ee).get(0);
 	}
+	public Emps findEmp(String oaAccount) {
+		// TODO Auto-generated method stub
+		EmpsExample example=new EmpsExample();
+		example.or().andOaAccountEqualTo(oaAccount);
+		List<Emps> list = mapper.selectByExample(example);
+		Emps emp=list.get(0);
+		return emp;
+	}
 
 }

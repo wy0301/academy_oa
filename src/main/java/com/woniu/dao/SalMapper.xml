@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniu.dao.SalMapper">
+  <resultMap id="BaseResultMap" type="com.woniu.domain.Sal">
+    <id column="SAL_ID" jdbcType="INTEGER" property="salId" />
+    <result column="EMP_ID" jdbcType="INTEGER" property="empId" />
+    <result column="YEAR" jdbcType="INTEGER" property="year" />
+    <result column="MONTH" jdbcType="INTEGER" property="month" />
+    <result column="BASEPAY" jdbcType="DECIMAL" property="basepay" />
+    <result column="JOB_ALLOWANCE" jdbcType="DECIMAL" property="jobAllowance" />
+    <result column="COMM_ALLOWANCE" jdbcType="DECIMAL" property="commAllowance" />
+    <result column="DUTY_ALLOWANCE" jdbcType="DECIMAL" property="dutyAllowance" />
+    <result column="HEALTH_ALLOWANCE" jdbcType="DECIMAL" property="healthAllowance" />
+    <result column="PUBLIC_HOUSING_FUND" jdbcType="DECIMAL" property="publicHousingFund" />
+    <result column="EXTRA_INCOME_ID" jdbcType="DECIMAL" property="extraIncomeId" />
+    <result column="WITHHOLDING_TAX" jdbcType="DECIMAL" property="withholdingTax" />
+    <result column="WITHHOLDING_TOTLE" jdbcType="DECIMAL" property="withholdingTotle" />
+    <result column="PAYABLE_SAL" jdbcType="DECIMAL" property="payableSal" />
+    <result column="ACTUAL_SAL" jdbcType="DECIMAL" property="actualSal" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    SAL_ID, EMP_ID, YEAR, MONTH, BASEPAY, JOB_ALLOWANCE, COMM_ALLOWANCE, DUTY_ALLOWANCE, 
+    HEALTH_ALLOWANCE, PUBLIC_HOUSING_FUND, EXTRA_INCOME_ID, WITHHOLDING_TAX, WITHHOLDING_TOTLE, 
+    PAYABLE_SAL, ACTUAL_SAL
+  </sql>
+  <select id="selectByExample" parameterType="com.woniu.domain.SalExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sal
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sal
+    where SAL_ID = #{salId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sal
+    where SAL_ID = #{salId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.woniu.domain.SalExample">
+    delete from sal
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.woniu.domain.Sal">
+    insert into sal (SAL_ID, EMP_ID, YEAR, 
+      MONTH, BASEPAY, JOB_ALLOWANCE, 
+      COMM_ALLOWANCE, DUTY_ALLOWANCE, HEALTH_ALLOWANCE, 
+      PUBLIC_HOUSING_FUND, EXTRA_INCOME_ID, WITHHOLDING_TAX, 
+      WITHHOLDING_TOTLE, PAYABLE_SAL, ACTUAL_SAL
+      )
+    values (#{salId,jdbcType=INTEGER}, #{empId,jdbcType=INTEGER}, #{year,jdbcType=INTEGER}, 
+      #{month,jdbcType=INTEGER}, #{basepay,jdbcType=DECIMAL}, #{jobAllowance,jdbcType=DECIMAL}, 
+      #{commAllowance,jdbcType=DECIMAL}, #{dutyAllowance,jdbcType=DECIMAL}, #{healthAllowance,jdbcType=DECIMAL}, 
+      #{publicHousingFund,jdbcType=DECIMAL}, #{extraIncomeId,jdbcType=DECIMAL}, #{withholdingTax,jdbcType=DECIMAL}, 
+      #{withholdingTotle,jdbcType=DECIMAL}, #{payableSal,jdbcType=DECIMAL}, #{actualSal,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.woniu.domain.Sal">
+    insert into sal
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="salId != null">
+        SAL_ID,
+      </if>
+      <if test="empId != null">
+        EMP_ID,
+      </if>
+      <if test="year != null">
+        YEAR,
+      </if>
+      <if test="month != null">
+        MONTH,
+      </if>
+      <if test="basepay != null">
+        BASEPAY,
+      </if>
+      <if test="jobAllowance != null">
+        JOB_ALLOWANCE,
+      </if>
+      <if test="commAllowance != null">
+        COMM_ALLOWANCE,
+      </if>
+      <if test="dutyAllowance != null">
+        DUTY_ALLOWANCE,
+      </if>
+      <if test="healthAllowance != null">
+        HEALTH_ALLOWANCE,
+      </if>
+      <if test="publicHousingFund != null">
+        PUBLIC_HOUSING_FUND,
+      </if>
+      <if test="extraIncomeId != null">
+        EXTRA_INCOME_ID,
+      </if>
+      <if test="withholdingTax != null">
+        WITHHOLDING_TAX,
+      </if>
+      <if test="withholdingTotle != null">
+        WITHHOLDING_TOTLE,
+      </if>
+      <if test="payableSal != null">
+        PAYABLE_SAL,
+      </if>
+      <if test="actualSal != null">
+        ACTUAL_SAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="salId != null">
+        #{salId,jdbcType=INTEGER},
+      </if>
+      <if test="empId != null">
+        #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null">
+        #{month,jdbcType=INTEGER},
+      </if>
+      <if test="basepay != null">
+        #{basepay,jdbcType=DECIMAL},
+      </if>
+      <if test="jobAllowance != null">
+        #{jobAllowance,jdbcType=DECIMAL},
+      </if>
+      <if test="commAllowance != null">
+        #{commAllowance,jdbcType=DECIMAL},
+      </if>
+      <if test="dutyAllowance != null">
+        #{dutyAllowance,jdbcType=DECIMAL},
+      </if>
+      <if test="healthAllowance != null">
+        #{healthAllowance,jdbcType=DECIMAL},
+      </if>
+      <if test="publicHousingFund != null">
+        #{publicHousingFund,jdbcType=DECIMAL},
+      </if>
+      <if test="extraIncomeId != null">
+        #{extraIncomeId,jdbcType=DECIMAL},
+      </if>
+      <if test="withholdingTax != null">
+        #{withholdingTax,jdbcType=DECIMAL},
+      </if>
+      <if test="withholdingTotle != null">
+        #{withholdingTotle,jdbcType=DECIMAL},
+      </if>
+      <if test="payableSal != null">
+        #{payableSal,jdbcType=DECIMAL},
+      </if>
+      <if test="actualSal != null">
+        #{actualSal,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.woniu.domain.SalExample" resultType="java.lang.Long">
+    select count(*) from sal
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sal
+    <set>
+      <if test="record.salId != null">
+        SAL_ID = #{record.salId,jdbcType=INTEGER},
+      </if>
+      <if test="record.empId != null">
+        EMP_ID = #{record.empId,jdbcType=INTEGER},
+      </if>
+      <if test="record.year != null">
+        YEAR = #{record.year,jdbcType=INTEGER},
+      </if>
+      <if test="record.month != null">
+        MONTH = #{record.month,jdbcType=INTEGER},
+      </if>
+      <if test="record.basepay != null">
+        BASEPAY = #{record.basepay,jdbcType=DECIMAL},
+      </if>
+      <if test="record.jobAllowance != null">
+        JOB_ALLOWANCE = #{record.jobAllowance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.commAllowance != null">
+        COMM_ALLOWANCE = #{record.commAllowance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dutyAllowance != null">
+        DUTY_ALLOWANCE = #{record.dutyAllowance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.healthAllowance != null">
+        HEALTH_ALLOWANCE = #{record.healthAllowance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.publicHousingFund != null">
+        PUBLIC_HOUSING_FUND = #{record.publicHousingFund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.extraIncomeId != null">
+        EXTRA_INCOME_ID = #{record.extraIncomeId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.withholdingTax != null">
+        WITHHOLDING_TAX = #{record.withholdingTax,jdbcType=DECIMAL},
+      </if>
+      <if test="record.withholdingTotle != null">
+        WITHHOLDING_TOTLE = #{record.withholdingTotle,jdbcType=DECIMAL},
+      </if>
+      <if test="record.payableSal != null">
+        PAYABLE_SAL = #{record.payableSal,jdbcType=DECIMAL},
+      </if>
+      <if test="record.actualSal != null">
+        ACTUAL_SAL = #{record.actualSal,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sal
+    set SAL_ID = #{record.salId,jdbcType=INTEGER},
+      EMP_ID = #{record.empId,jdbcType=INTEGER},
+      YEAR = #{record.year,jdbcType=INTEGER},
+      MONTH = #{record.month,jdbcType=INTEGER},
+      BASEPAY = #{record.basepay,jdbcType=DECIMAL},
+      JOB_ALLOWANCE = #{record.jobAllowance,jdbcType=DECIMAL},
+      COMM_ALLOWANCE = #{record.commAllowance,jdbcType=DECIMAL},
+      DUTY_ALLOWANCE = #{record.dutyAllowance,jdbcType=DECIMAL},
+      HEALTH_ALLOWANCE = #{record.healthAllowance,jdbcType=DECIMAL},
+      PUBLIC_HOUSING_FUND = #{record.publicHousingFund,jdbcType=DECIMAL},
+      EXTRA_INCOME_ID = #{record.extraIncomeId,jdbcType=DECIMAL},
+      WITHHOLDING_TAX = #{record.withholdingTax,jdbcType=DECIMAL},
+      WITHHOLDING_TOTLE = #{record.withholdingTotle,jdbcType=DECIMAL},
+      PAYABLE_SAL = #{record.payableSal,jdbcType=DECIMAL},
+      ACTUAL_SAL = #{record.actualSal,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.domain.Sal">
+    update sal
+    <set>
+      <if test="empId != null">
+        EMP_ID = #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="year != null">
+        YEAR = #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null">
+        MONTH = #{month,jdbcType=INTEGER},
+      </if>
+      <if test="basepay != null">
+        BASEPAY = #{basepay,jdbcType=DECIMAL},
+      </if>
+      <if test="jobAllowance != null">
+        JOB_ALLOWANCE = #{jobAllowance,jdbcType=DECIMAL},
+      </if>
+      <if test="commAllowance != null">
+        COMM_ALLOWANCE = #{commAllowance,jdbcType=DECIMAL},
+      </if>
+      <if test="dutyAllowance != null">
+        DUTY_ALLOWANCE = #{dutyAllowance,jdbcType=DECIMAL},
+      </if>
+      <if test="healthAllowance != null">
+        HEALTH_ALLOWANCE = #{healthAllowance,jdbcType=DECIMAL},
+      </if>
+      <if test="publicHousingFund != null">
+        PUBLIC_HOUSING_FUND = #{publicHousingFund,jdbcType=DECIMAL},
+      </if>
+      <if test="extraIncomeId != null">
+        EXTRA_INCOME_ID = #{extraIncomeId,jdbcType=DECIMAL},
+      </if>
+      <if test="withholdingTax != null">
+        WITHHOLDING_TAX = #{withholdingTax,jdbcType=DECIMAL},
+      </if>
+      <if test="withholdingTotle != null">
+        WITHHOLDING_TOTLE = #{withholdingTotle,jdbcType=DECIMAL},
+      </if>
+      <if test="payableSal != null">
+        PAYABLE_SAL = #{payableSal,jdbcType=DECIMAL},
+      </if>
+      <if test="actualSal != null">
+        ACTUAL_SAL = #{actualSal,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where SAL_ID = #{salId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.woniu.domain.Sal">
+    update sal
+    set EMP_ID = #{empId,jdbcType=INTEGER},
+      YEAR = #{year,jdbcType=INTEGER},
+      MONTH = #{month,jdbcType=INTEGER},
+      BASEPAY = #{basepay,jdbcType=DECIMAL},
+      JOB_ALLOWANCE = #{jobAllowance,jdbcType=DECIMAL},
+      COMM_ALLOWANCE = #{commAllowance,jdbcType=DECIMAL},
+      DUTY_ALLOWANCE = #{dutyAllowance,jdbcType=DECIMAL},
+      HEALTH_ALLOWANCE = #{healthAllowance,jdbcType=DECIMAL},
+      PUBLIC_HOUSING_FUND = #{publicHousingFund,jdbcType=DECIMAL},
+      EXTRA_INCOME_ID = #{extraIncomeId,jdbcType=DECIMAL},
+      WITHHOLDING_TAX = #{withholdingTax,jdbcType=DECIMAL},
+      WITHHOLDING_TOTLE = #{withholdingTotle,jdbcType=DECIMAL},
+      PAYABLE_SAL = #{payableSal,jdbcType=DECIMAL},
+      ACTUAL_SAL = #{actualSal,jdbcType=DECIMAL}
+    where SAL_ID = #{salId,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+	<select id="findSalToEmpToDept" parameterType="java.util.Map" resultMap="rm">
+		SELECT * from sal s
+			 RIGHT JOIN emps e ON s.EMP_ID=e.EMP_ID LEFT 
+			 	JOIN dept d ON e.DEPT_ID=d.DEPT_ID 
+			 		WHERE s.`YEAR`=#{year} AND s.`MONTH`=#{month}
+	</select>  
+	 <resultMap id="rm" type="com.woniu.domain.Sal">
+    <id column="SAL_ID" jdbcType="INTEGER" property="salId" />
+    <result column="EMP_ID" jdbcType="INTEGER" property="empId" />
+    <result column="YEAR" jdbcType="INTEGER" property="year" />
+    <result column="MONTH" jdbcType="INTEGER" property="month" />
+    <result column="BASEPAY" jdbcType="DECIMAL" property="basepay" />
+    <result column="JOB_ALLOWANCE" jdbcType="DECIMAL" property="jobAllowance" />
+    <result column="COMM_ALLOWANCE" jdbcType="DECIMAL" property="commAllowance" />
+    <result column="DUTY_ALLOWANCE" jdbcType="DECIMAL" property="dutyAllowance" />
+    <result column="HEALTH_ALLOWANCE" jdbcType="DECIMAL" property="healthAllowance" />
+    <result column="PUBLIC_HOUSING_FUND" jdbcType="DECIMAL" property="publicHousingFund" />
+    <result column="EXTRA_INCOME_ID" jdbcType="DECIMAL" property="extraIncomeId" />
+    <result column="WITHHOLDING_TAX" jdbcType="DECIMAL" property="withholdingTax" />
+    <result column="WITHHOLDING_TOTLE" jdbcType="DECIMAL" property="withholdingTotle" />
+    <result column="PAYABLE_SAL" jdbcType="DECIMAL" property="payableSal" />
+    <result column="ACTUAL_SAL" jdbcType="DECIMAL" property="actualSal" />
+    <association property="emps" column="empId" javaType="int" resultMap="rmEmp"></association>
+  </resultMap>
+  <resultMap type="com.woniu.domain.Emps" id="rmEmp">
+   <id column="EMP_ID" jdbcType="INTEGER" property="empId" />
+    <result column="ENAME" jdbcType="VARCHAR" property="ename" />
+    <result column="SEX" jdbcType="VARCHAR" property="sex" />
+    <result column="BIRTHDAY" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="HIREDATE" jdbcType="TIMESTAMP" property="hiredate" />
+    <result column="DEPT_ID" jdbcType="INTEGER" property="deptId" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="OA_ACCOUNT" jdbcType="VARCHAR" property="oaAccount" />
+    <result column="OA_PASSWORD" jdbcType="VARCHAR" property="oaPassword" />
+    <result column="SALT" jdbcType="VARCHAR" property="salt" />
+    <association property="dept" column="deptId" javaType="INTEGER" resultMap="rmDept"></association>
+  </resultMap>
+  <resultMap id="rmDept" type="com.woniu.domain.Dept">
+    <id column="DEPT_ID" jdbcType="INTEGER" property="deptId" />
+    <result column="DNAME" jdbcType="VARCHAR" property="dname" />
+    <result column="MANAGER" jdbcType="INTEGER" property="manager" />
+  </resultMap>
+</mapper>
