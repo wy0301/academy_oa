@@ -59,12 +59,10 @@ public class Roles implements Serializable {
 	@Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", roleId=").append(roleId);
-        sb.append(", rname=").append(rname);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("[");
+        if(roleId!=null)
+        sb.append("角色ID：").append(roleId);
+        sb.append("角色名称：").append(rname);
         sb.append("]");
         return sb.toString();
     }

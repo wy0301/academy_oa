@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.exceptions.JedisConnectionException;
 
 @Component
 @Aspect
@@ -45,7 +46,7 @@ public class RedisAspect {
 				jedis = pool.getResource();
 				b = jedis.exists(key.toString());
 			} catch (Exception e) {
-				e.printStackTrace();
+				System.out.println("redis服务器异常！");
 				bb = false;
 			}
 			if (b) {
@@ -87,6 +88,8 @@ public class RedisAspect {
 					jedis.del(iterator.next());
 				}
 			}
+		}catch(JedisConnectionException e) {
+			System.out.println("redis服务器异常！");
 		} catch (Throwable e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

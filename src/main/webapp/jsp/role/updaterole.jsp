@@ -25,7 +25,7 @@
     <td width="90" align="center" class="td_form01">角色名称</td>
     
     <td colspan="3" class="td_form02"><input name="rname" type="text" class="input" value="${roles.rname}">
-    <input name="role_id" type="hidden" value="${role.roleId}"/>
+    <input name="roleId" type="hidden" value="${roles.roleId}"/>
     </td>
   </tr>
 </table>

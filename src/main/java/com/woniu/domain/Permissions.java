@@ -59,8 +59,7 @@ public class Permissions implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Permissions [permissionId=" + permissionId + ", permissionContent=" + permissionContent + ", parentId="
-				+ parentId + ", Children=" + Children + "]";
+		return "[ID：" + permissionId + ", 名称：" + permissionContent+"]" ;
 	}
 
     
