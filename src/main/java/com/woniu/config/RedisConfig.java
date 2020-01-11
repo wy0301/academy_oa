@@ -10,7 +10,7 @@ public class RedisConfig {
 	@Bean
 	public JedisPool redisPoolFactory() throws Exception{
 		JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-		JedisPool jedisPool = new JedisPool(jedisPoolConfig,"192.168.9.233",6379);
+		JedisPool jedisPool = new JedisPool(jedisPoolConfig,"192.168.9.233",6379,200);
 		return jedisPool;
 	}
 }
