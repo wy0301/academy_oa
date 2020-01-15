@@ -8,6 +8,8 @@
 <script language="javascript" src="../../../js/check.js"></script>
 <script language="javascript" src="../../../js/checkAll.js"></script>
 <script language="javascript" src="../../../js/clientSideApp.js"></script>
+<link rel="stylesheet" href="/My97DatePicker/skin/default/datepicker.css"/>
+<script type="text/javascript" src="/My97DatePicker/WdatePicker.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>社科院OA办公系统</title>
 </head>
@@ -25,29 +27,26 @@
   <table width="100%"  border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td>
-<form name="operationLogForm" method="post" action="operate-exp-list.htm" target="rs">
+<form name="operationLogForm" method="post" action="/syslogs/findSelective">
 <br>
 <table width="95%"  border="0" align="center" cellpadding="0" cellspacing="0">
           <tr> 
             <td class="td_page">操作时间:
-					从<input name="PARA_YM_NOW" size="10" type="text" class="input"   id="PARA_YM_NOW" next="A001014" alt="查询年月|0|d|||" value="" onFocus="{obtainFocus(this),this.select()}" onKeyPress="gotoNextInput(this)" onBlur="matchInput(this)" readonly>
-					<input type="button"  class="button_select" onClick="fPopUpCalendarDlg('PARA_YM_NOW')">			
-					到<input name="PARA_YM_NOW1" size="10" type="text" class="input"   id="PARA_YM_NOW" next="A001014" alt="查询年月|0|d|||" value="" onFocus="{obtainFocus(this),this.select()}" onKeyPress="gotoNextInput(this)" onBlur="matchInput(this)" readonly>
-					<input type="button"  class="button_select" onClick="fPopUpCalendarDlg('PARA_YM_NOW1')">	
-              　被操作人: 
-              <input name="operatorName" type="text" class="input" id="35" onFocus="{obtainFocus(this),this.select()}" onKeyPress="gotoNextInput(this)" value="" size="10" alt="被操作人|1|s" next="40">
+					 <input type="text" id="d241" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="Wdate" name="beginTime"/>		
+					到&nbsp;
+					 <input type="text" id="d241" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="Wdate" name="endTime"/>
               　操作人: 
-              <input name="operName" type="text" class="input" id="40" onFocus="{obtainFocus(this),this.select()}" onKeyPress="gotoNextInput(this)" value="" size="10" alt="操作人|1|s" next="45">
+              <input name="operName" type="text" class="input" id="40" size="10" >
               　操作类型: 
               <select name="operType">
-                <option value="" selected>所有类型</option>
+                <option selected>所有类型</option>
                 <option value="add">add</option>
-                <option value="modify">modify</option>
+                <option value="modify">update</option>
                 <option value="delete">delete</option>
               </select>
               　 
-              <input name="query" type="button" class="buttonface02" onClick="forQuery(document.forms(0),'1')" value="  查询  ">
-              <input type="submit" name="check"  class="buttonface" value="查看导出日志">
+              <input name="query" type="submit" class="buttonface02" value="  查询  ">
+              <input type="button" name="check"  class="buttonface" value="查看导出日志">
             </td>
           </tr>
         </table>

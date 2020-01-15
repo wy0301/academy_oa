@@ -23,4 +23,13 @@ public class SyslogController {
 		model.addAttribute("list", list);
 		return "jsp/log/findUI";
 	}
+	
+	@RequestMapping("findSelective")
+	public String findSelective(String beginTime,String endTime,String operName,String operType) {
+		System.out.println(beginTime);
+		System.out.println(endTime);
+		System.out.println(operName);
+		System.out.println(operType);
+		return "";
+	}
 }
