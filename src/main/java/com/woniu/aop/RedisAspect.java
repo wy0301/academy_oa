@@ -66,6 +66,7 @@ public class RedisAspect {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
+			if(jedis!=null)
 			jedis.close();
 		}
 		return obj;
@@ -94,6 +95,7 @@ public class RedisAspect {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
+			if(jedis!=null)
 			jedis.close();
 		}
 	}

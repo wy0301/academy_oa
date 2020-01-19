@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniu.dao.SyslogMapper">
+  <resultMap id="BaseResultMap" type="com.woniu.domain.Syslog">
+    <id column="LOG_ID" jdbcType="INTEGER" property="logId" />
+    <result column="OP_TIME" jdbcType="TIMESTAMP" property="opTime" />
+    <result column="OP_EMP" jdbcType="INTEGER" property="opEmp" />
+    <result column="IP" jdbcType="VARCHAR" property="ip" />
+    <result column="OP_MODULE" jdbcType="VARCHAR" property="opModule" />
+    <result column="OP_TYPE" jdbcType="VARCHAR" property="opType" />
+    <result column="OP_CONTENT" jdbcType="VARCHAR" property="opContent" />
+    <result column="OP_DURATION" jdbcType="DECIMAL" property="opDuration" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    LOG_ID, OP_TIME, OP_EMP, IP, OP_MODULE, OP_TYPE, OP_CONTENT, OP_DURATION
+  </sql>
+  <select id="selectByExample" parameterType="com.woniu.domain.SyslogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from syslog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from syslog
+    where LOG_ID = #{logId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from syslog
+    where LOG_ID = #{logId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.woniu.domain.SyslogExample">
+    delete from syslog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.woniu.domain.Syslog">
+    insert into syslog (LOG_ID, OP_TIME, OP_EMP, 
+      IP, OP_MODULE, OP_TYPE, 
+      OP_CONTENT, OP_DURATION)
+    values (#{logId,jdbcType=INTEGER}, #{opTime,jdbcType=TIMESTAMP}, #{opEmp,jdbcType=INTEGER}, 
+      #{ip,jdbcType=VARCHAR}, #{opModule,jdbcType=VARCHAR}, #{opType,jdbcType=VARCHAR}, 
+      #{opContent,jdbcType=VARCHAR}, #{opDuration,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.woniu.domain.Syslog">
+    insert into syslog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        LOG_ID,
+      </if>
+      <if test="opTime != null">
+        OP_TIME,
+      </if>
+      <if test="opEmp != null">
+        OP_EMP,
+      </if>
+      <if test="ip != null">
+        IP,
+      </if>
+      <if test="opModule != null">
+        OP_MODULE,
+      </if>
+      <if test="opType != null">
+        OP_TYPE,
+      </if>
+      <if test="opContent != null">
+        OP_CONTENT,
+      </if>
+      <if test="opDuration != null">
+        OP_DURATION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        #{logId,jdbcType=INTEGER},
+      </if>
+      <if test="opTime != null">
+        #{opTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="opEmp != null">
+        #{opEmp,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="opModule != null">
+        #{opModule,jdbcType=VARCHAR},
+      </if>
+      <if test="opType != null">
+        #{opType,jdbcType=VARCHAR},
+      </if>
+      <if test="opContent != null">
+        #{opContent,jdbcType=VARCHAR},
+      </if>
+      <if test="opDuration != null">
+        #{opDuration,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.woniu.domain.SyslogExample" resultType="java.lang.Long">
+    select count(*) from syslog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update syslog
+    <set>
+      <if test="record.logId != null">
+        LOG_ID = #{record.logId,jdbcType=INTEGER},
+      </if>
+      <if test="record.opTime != null">
+        OP_TIME = #{record.opTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.opEmp != null">
+        OP_EMP = #{record.opEmp,jdbcType=INTEGER},
+      </if>
+      <if test="record.ip != null">
+        IP = #{record.ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opModule != null">
+        OP_MODULE = #{record.opModule,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opType != null">
+        OP_TYPE = #{record.opType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opContent != null">
+        OP_CONTENT = #{record.opContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opDuration != null">
+        OP_DURATION = #{record.opDuration,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update syslog
+    set LOG_ID = #{record.logId,jdbcType=INTEGER},
+      OP_TIME = #{record.opTime,jdbcType=TIMESTAMP},
+      OP_EMP = #{record.opEmp,jdbcType=INTEGER},
+      IP = #{record.ip,jdbcType=VARCHAR},
+      OP_MODULE = #{record.opModule,jdbcType=VARCHAR},
+      OP_TYPE = #{record.opType,jdbcType=VARCHAR},
+      OP_CONTENT = #{record.opContent,jdbcType=VARCHAR},
+      OP_DURATION = #{record.opDuration,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.domain.Syslog">
+    update syslog
+    <set>
+      <if test="opTime != null">
+        OP_TIME = #{opTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="opEmp != null">
+        OP_EMP = #{opEmp,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null">
+        IP = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="opModule != null">
+        OP_MODULE = #{opModule,jdbcType=VARCHAR},
+      </if>
+      <if test="opType != null">
+        OP_TYPE = #{opType,jdbcType=VARCHAR},
+      </if>
+      <if test="opContent != null">
+        OP_CONTENT = #{opContent,jdbcType=VARCHAR},
+      </if>
+      <if test="opDuration != null">
+        OP_DURATION = #{opDuration,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where LOG_ID = #{logId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.woniu.domain.Syslog">
+    update syslog
+    set OP_TIME = #{opTime,jdbcType=TIMESTAMP},
+      OP_EMP = #{opEmp,jdbcType=INTEGER},
+      IP = #{ip,jdbcType=VARCHAR},
+      OP_MODULE = #{opModule,jdbcType=VARCHAR},
+      OP_TYPE = #{opType,jdbcType=VARCHAR},
+      OP_CONTENT = #{opContent,jdbcType=VARCHAR},
+      OP_DURATION = #{opDuration,jdbcType=DECIMAL}
+    where LOG_ID = #{logId,jdbcType=INTEGER}
+  </update>
+</mapper>
